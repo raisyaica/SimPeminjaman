@@ -33,7 +33,8 @@
         display: flex; align-items: center; justify-content: space-between;
     ">
             <div style="display:flex; align-items:center; gap:12px;">
-                <span class="mdi {{ $transaksi->status === 'dipinjam' ? 'mdi-clock-alert-outline' : 'mdi-check-circle' }}" style="font-size:28px; color:{{ $transaksi->status === 'dipinjam' ? '#DC2626' : '#16A34A' }};"></span>
+                <span class="mdi {{ $transaksi->status === 'dipinjam' ? 'mdi-clock-alert-outline' : 'mdi-check-circle' }}"
+                    style="font-size:28px; color:{{ $transaksi->status === 'dipinjam' ? '#DC2626' : '#16A34A' }};"></span>
                 <div>
                     <div style="font-weight:700; font-size:16px;">
                         {{ $transaksi->status === 'dipinjam' ? 'Barang Sedang Dipinjam' : 'Barang Telah Dikembalikan' }}
@@ -79,7 +80,7 @@
 
                 <div class="detail-item">
                     <div class="detail-item__label">Tanggal Pinjam</div>
-                    <div class="detail-item__value">{{ $transaksi->tanggal_pinjam->format('l, d F Y') }}</div>
+                    <div class="detail-item__value">{{ \Carbon\Carbon::parse($transaksi->tanggal_pinjam)->format('l, d F Y') }}</div>
                 </div>
 
                 <div class="detail-item">
