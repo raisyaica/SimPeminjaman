@@ -92,8 +92,9 @@
                                 <tr>
                                     <td>{{ $transaksis->firstItem() + $index }}</td>
                                     <td>{{ $transaksi->peminjam->nama_peminjam }}</td>
-                                    <td>{{ $transaksi->tanggal_pinjam->format('d M Y') }}</td>
-                                    <td>{{ $transaksi->tanggal_kembali ? $transaksi->tanggal_kembali->format('d M Y') : '–' }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($transaksi->tanggal_pinjam)->format('d M Y') }}</td>
+                                    <td>{{ $transaksi->tanggal_kembali ? \Carbon\Carbon::parse($transaksi->tanggal_kembali)->format('d M Y') : '–' }}
+                                    </td>
                                     <td>
                                         @if ($transaksi->status === 'dipinjam')
                                             <span class="badge badge--danger"><span class="badge-dot badge-dot--red"></span> Dipinjam</span>
@@ -102,7 +103,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('transaksi.show', $transaksi) }}" class="btn btn-secondary btn-sm"><span class="mdi mdi-eye"></span></a>
+                                        <a href="{{ route('transaksi.show', $transaksi) }}" class="btn btn-secondary btn-sm"><span
+                                                class="mdi mdi-eye"></span></a>
                                     </td>
                                 </tr>
                             @endforeach
